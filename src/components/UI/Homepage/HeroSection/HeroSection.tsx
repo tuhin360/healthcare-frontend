@@ -39,6 +39,7 @@ const HeroSection = () => {
           variant="h6"
           component="p"
           fontWeight={400}
+          color="grey.600"
           sx={{
             marginY: "10px",
           }}
@@ -65,7 +66,6 @@ const HeroSection = () => {
           justifyContent: "center",
           position: "relative",
           mt: 0,
-          
         }}
       >
         <Box
@@ -100,12 +100,13 @@ const HeroSection = () => {
             />
           </Box>
         </Box>
-        <Box sx={{
+        <Box
+          sx={{
             position: "absolute",
             top: "220px",
             left: "150px",
-
-        }}>
+          }}
+        >
           <Image
             src={assets.images.doctor3}
             width={240}
@@ -113,13 +114,14 @@ const HeroSection = () => {
             alt="doctor3"
           />
         </Box>
-        <Box sx={{
+        <Box
+          sx={{
             position: "absolute",
             bottom: "-50px",
             right: "0",
-            zIndex: -1
-
-        }}>
+            zIndex: -1,
+          }}
+        >
           <Image
             src={assets.images.stethoscope}
             width={180}
