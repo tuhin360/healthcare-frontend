@@ -14,6 +14,7 @@ import React from "react";
 import assets from "@/assets";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { modifyPayload } from "@/utils/modifyPayload";
 
 interface IpatientData {
   name: string;
@@ -24,7 +25,7 @@ interface IpatientData {
 
 interface IpatientRegisterFormData {
   password: string;
-  patient: IpatientData ;
+  patient: IpatientData;
 }
 
 const RegisterPage = () => {
@@ -35,7 +36,11 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm<IpatientRegisterFormData>();
 
-  const onSubmit: SubmitHandler<IpatientRegisterFormData> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IpatientRegisterFormData> = (values) => {
+   const data =  modifyPayload(values);
+    console.log(data);
+  };
+
 
   return (
     <Container>
@@ -51,7 +56,6 @@ const RegisterPage = () => {
             width: "100%",
             maxWidth: "600px",
             padding: 4,
-
             borderRadius: 1,
             boxShadow: 1,
             textAlign: "center",
