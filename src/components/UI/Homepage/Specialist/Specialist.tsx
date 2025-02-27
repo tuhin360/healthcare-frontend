@@ -74,9 +74,14 @@ const Specialist = async () => {
             </Box>
           ))}
         </Stack>
-        <Button variant="outlined"  sx={{
+        <Button
+          variant="outlined"
+          sx={{
             marginTop: "20px",
-        }} >View All</Button>
+          }}
+        >
+          View All
+        </Button>
       </Box>
     </Container>
   );

@@ -19,7 +19,7 @@ const HeroSection = () => {
             left: "-120px",
           }}
         >
-          <Image src={assets.svgs.grid} alt="grid" />
+          <Image src={assets.svgs.grid} alt="grid"  />
         </Box>
         <Typography variant="h3" component="h1" fontWeight={600}>
           Healthier Hearts
