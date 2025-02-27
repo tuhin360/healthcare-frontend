@@ -4,7 +4,6 @@ import {
   Button,
   Container,
   Grid,
-  Grid2,
   Stack,
   TextField,
   Typography,
@@ -15,6 +14,9 @@ import assets from "@/assets";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { modifyPayload } from "@/utils/modifyPayload";
+import { registerPatient } from "@/services/actions/registerPatient";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface IpatientData {
   name: string;
@@ -29,6 +31,7 @@ interface IpatientRegisterFormData {
 }
 
 const RegisterPage = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -36,11 +39,20 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm<IpatientRegisterFormData>();
 
-  const onSubmit: SubmitHandler<IpatientRegisterFormData> = (values) => {
-   const data =  modifyPayload(values);
-    console.log(data);
+  const onSubmit: SubmitHandler<IpatientRegisterFormData> = async (values) => {
+    const data = modifyPayload(values);
+    // console.log(data);
+    try {
+      const res = await registerPatient(data);
+      if (res?.data?.id) {
+        toast.success(res?.message);
+        router.push("/login");
+      }
+      // console.log(res);
+    } catch (error: any) {
+      console.error(error.message);
+    }
   };
-
 
   return (
     <Container>
