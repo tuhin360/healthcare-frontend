@@ -82,7 +82,8 @@ const WhyUs = () => {
                 <Typography variant="h6" component="h6" fontWeight={600}>
                   {servicesData[0].title}
                 </Typography>
-                <Typography variant="body2" fontWeight={300}>
+                <Typography variant="body2" fontWeight={300}
+                color="grey.600">
                   {servicesData[0].description}
                 </Typography>
               </Box>
@@ -116,7 +117,8 @@ const WhyUs = () => {
                 <Typography variant="h6" component="h6" fontWeight={600}>
                   {servicesData[1].title}
                 </Typography>
-                <Typography variant="body2" fontWeight={300}>
+                <Typography variant="body2" fontWeight={300}
+                color="grey.600">
                   {servicesData[1].description}
                 </Typography>
               </Box>
@@ -150,7 +152,8 @@ const WhyUs = () => {
                 <Typography variant="h6" component="h6" fontWeight={600}>
                   {servicesData[2].title}
                 </Typography>
-                <Typography variant="body2" fontWeight={300}>
+                <Typography variant="body2" fontWeight={300}
+                color="grey.600">
                   {servicesData[2].description}
                 </Typography>
               </Box>
@@ -183,7 +186,8 @@ const WhyUs = () => {
                 <Typography variant="h6" component="h6" fontWeight={600}>
                   {servicesData[3].title}
                 </Typography>
-                <Typography variant="body2" fontWeight={300}>
+                <Typography variant="body2" fontWeight={300}
+                color="grey.600">
                   {servicesData[3].description}
                 </Typography>
               </Box>
