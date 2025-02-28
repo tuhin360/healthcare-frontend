@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import assets from "@/assets";
 import { userLogin } from "@/services/actions/userLogin";
+import { storeUserInfo } from "@/services/auth.services";
 import {
   Box,
   Button,
@@ -12,9 +13,8 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
- 
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "sonner";
+ 
 
 export type FormValues = {
   email: string;
@@ -32,12 +32,10 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
     // console.log(values);
     try {
-      const res = await userLogin(values);  // passing values to userLogin
-      // if (res?.data?.id) {
-      //   toast.success(res?.message);
-      //   router.push("/");
-      // }
-      console.log(res);
+      const res = await userLogin(values); // passing values to userLogin
+      if (res?.data?.accessToken) {
+        storeUserInfo({ accessToken: res?.data?.accessToken });
+      }
     } catch (error: any) {
       console.error(error.message);
     }
