@@ -1,4 +1,6 @@
+"use client"
 import assets from "@/assets";
+import { userLogin } from "@/services/actions/userLogin";
 import {
   Box,
   Button,
@@ -10,8 +12,37 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+ 
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+export type FormValues = {
+  email: string;
+  password: string;
+};
 
 const LoginPage = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = async (values) => {
+    // console.log(values);
+    try {
+      const res = await userLogin(values);  // passing values to userLogin
+      // if (res?.data?.id) {
+      //   toast.success(res?.message);
+      //   router.push("/");
+      // }
+      console.log(res);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <Container>
       <Stack
@@ -46,52 +77,64 @@ const LoginPage = () => {
                 Login PH HealthCare
               </Typography>
             </Box>
-            <Grid container spacing={2} my={1}>
-              <Grid item md={6}>
-                <TextField
-                  label="Email"
-                  type="email"
-                  variant="outlined"
-                  size="small"
-                  fullWidth={true}
-                />
-              </Grid>
-              <Grid item md={6}>
-                <TextField
-                  label="Password"
-                  type="password"
-                  variant="outlined"
-                  size="small"
-                  fullWidth={true}
-                />
-              </Grid>
-            </Grid>
-            <Box
-              sx={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
-              <Typography component="p" fontWeight={300} textAlign="end" my={1}>
-                Forget Password?
-              </Typography>
-            </Box>
+            <Box>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Grid container spacing={2} my={1}>
+                  <Grid item md={6}>
+                    <TextField
+                      label="Email"
+                      type="email"
+                      variant="outlined"
+                      size="small"
+                      fullWidth={true}
+                      {...register("email")}
+                    />
+                  </Grid>
+                  <Grid item md={6}>
+                    <TextField
+                      label="Password"
+                      type="password"
+                      variant="outlined"
+                      size="small"
+                      fullWidth={true}
+                      {...register("password")}
+                    />
+                  </Grid>
+                </Grid>
+                <Box
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Typography
+                    component="p"
+                    fontWeight={300}
+                    textAlign="end"
+                    my={1}
+                  >
+                    Forget Password?
+                  </Typography>
+                </Box>
 
-            <Button
-              sx={{
-                margin: "15px 0",
-              }}
-              fullWidth={true}
-            >
-              Login
-            </Button>
-            <Typography component="p" fontWeight={300} my={2}>
-              Don't have an account?{" "}
-              <Link className="text-blue-600" href="/register">
-                Create an account
-              </Link>
-            </Typography>
+                <Button
+                  sx={{
+                    margin: "15px 0",
+                  }}
+                  fullWidth={true}
+                  type="submit"
+                >
+                  Login
+                </Button>
+                <Typography component="p" fontWeight={300} my={2}>
+                  Don&apost have an account?{" "}
+                  <Link className="text-blue-600" href="/register">
+                    Create an account
+                  </Link>
+                </Typography>
+              </form>
+            </Box>
           </Stack>
         </Box>
       </Stack>
