@@ -39,7 +39,9 @@ const Navbar = () => {
           <Typography>NGOs</Typography>
         </Stack>
         {userInfo?.userId ? (
-          <Button color="error" onClick={handleLogOut}>Logout</Button>
+          <Button color="error" onClick={handleLogOut}>
+            Logout
+          </Button>
         ) : (
           <Button component={Link} href="/login">
             Login
